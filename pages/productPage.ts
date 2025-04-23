@@ -9,6 +9,8 @@ export class ProductPage {
     readonly buttonBackToProducts: Locator;
     readonly buttonCartIcon: Locator;
 
+    readonly productBackPack: Locator;
+
     constructor (page: Page){
         this.page = page;
         this.labelProductName = (productName: string) => page.locator('[data-test="inventory-item-name"]', { hasText: `${productName}` });
