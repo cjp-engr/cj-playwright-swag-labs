@@ -23,15 +23,11 @@ type MyFixtures = {
 export const test = base.extend<MyFixtures>({
     landingPage : async ({ page }, use) => {
         const landingPage = new LandingPage(page);
-        console.log("URL ", process.env.URL);
-        await landingPage.openURL(process.env.URL!);
+        await landingPage.openURL(`${process.env.URL}inventory.html`);
         await use(landingPage);
     },
     loginPage : async ({ page }, use) => {
         const loginPage = new LoginPage(page);
-        console.log("USER_NAME ",process.env.USER_NAME);
-        console.log("PASSWORD ",process.env.PASSWORD);
-        await loginPage.loginUser(process.env.USER_NAME ?? '', process.env.PASSWORD ?? '');
         await use(loginPage);
     },
     productsListPage : async ({ page }, use) => {

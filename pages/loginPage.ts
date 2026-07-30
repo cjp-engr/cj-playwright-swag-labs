@@ -7,6 +7,7 @@ export class LoginPage {
     readonly textFieldPassword: Locator;
     readonly buttonSignIn: Locator;
     readonly labelProduct: Locator;
+    readonly errorMessage: Locator;
 
     constructor (page: Page){
         this.page = page;
@@ -14,6 +15,7 @@ export class LoginPage {
         this.textFieldPassword = page.getByPlaceholder('Password');
         this.buttonSignIn = page.locator('#login-button');
         this.labelProduct = page.getByLabel('Products');
+        this.errorMessage = page.locator('[data-test="error"]');
     }
 
     async loginUser(email: string, password: string) {
@@ -23,6 +25,12 @@ export class LoginPage {
         await this.buttonSignIn.click();
 
         expect(await this.labelProduct.isVisible());
+    }
+
+    async attemptLogin(username: string, password: string) {
+        await this.textFieldUsername.fill(username);
+        await this.textFieldPassword.fill(password);
+        await this.buttonSignIn.click();
     }
 
 }
